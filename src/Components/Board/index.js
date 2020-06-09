@@ -1,31 +1,25 @@
-import React from 'react'
+import React from 'react';
 
-import './styles.css'
+import './styles.css';
 
-const Board = (props) => {
-	return (
-		<div className='containerTab'>
-			<Row items={props.items} />
-		</div>
-	)
-}
+const Board = ({ tablero, colocar_carta }) => {
+  return (
+    <div className='containerTab'>
+      {tablero.map((item, idx) => {
+        return <Square colocar_carta={colocar_carta} key={idx} item={item} />;
+      })}
+    </div>
+  );
+};
 
-const Row = (props) => {
-	return (
-		<div className='row'>
-			{props.items.map((item, index) => {
-				return <Square item={item} />
-			})}
-		</div>
-	)
-}
+const Square = ({ item, colocar_carta }) => {
+  return (
+    <div onClick={() => colocar_carta(item)} className='squareContainer'>
+      <div className='square'>
+        <p>{item.item}</p>
+      </div>
+    </div>
+  );
+};
 
-const Square = (props) => {
-	return (
-		<div className='squareContainer'>
-			<div onClick={() => alert(props.item.builded)} className='square'></div>
-		</div>
-	)
-}
-
-export default Board
+export default Board;

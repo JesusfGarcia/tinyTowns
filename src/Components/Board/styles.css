@@ -1,49 +1,45 @@
 .containerTab {
-	background-color: #d9ddd3;
-	width: 37.5em;
-	height: 37.5em;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.row {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+  background-color: #d9ddd3;
+  width: 37.5em;
+  height: 37.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .squareContainer {
-	width: 7.5em;
-	height: 7.5em;
-	margin: 0.3125em;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  width: 7.5em;
+  height: 7.5em;
+  margin: 0.3125em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .square {
-	background: rgb(170, 191, 74);
-	background: radial-gradient(
-		circle,
-		rgba(170, 191, 74, 1) 0%,
-		rgba(155, 173, 69, 1) 27%,
-		rgba(120, 135, 52, 1) 77%,
-		rgba(99, 111, 45, 1) 100%
-	);
-	width: 95%;
-	height: 95%;
-	border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	-webkit-border-radius: 10px 10px 10px 10px;
-	border: 0px solid #000000;
+  background: rgb(170, 191, 74);
+  background: radial-gradient(
+    circle,
+    rgba(170, 191, 74, 1) 0%,
+    rgba(155, 173, 69, 1) 27%,
+    rgba(120, 135, 52, 1) 77%,
+    rgba(99, 111, 45, 1) 100%
+  );
+  width: 95%;
+  height: 95%;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .square:hover {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }

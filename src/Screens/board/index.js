@@ -1,246 +1,89 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useReducer } from 'react';
 
-import './styles.scss'
+import './styles.scss';
 
-import Tablero from '../../Components/Board'
+import { actions } from './actions';
+import { initialState } from './constants';
+import { reducer } from './reducer';
 
-const Board = (props) => {
-	const [baraja, setBaraja] = useState([
-		'madera',
-		'ladrillo',
-		'trigo',
-		'piedra',
-		'vidrio',
-		'madera',
-		'ladrillo',
-		'trigo',
-		'piedra',
-		'vidrio',
-		'madera',
-		'ladrillo',
-		'trigo',
-		'piedra',
-		'vidrio',
-	])
-	const [edificios_jugables, setJugables] = useState([])
-	const [cottage] = useState([
-		{ name: 'cottage', description: '', image: '', icons: '' },
-	])
-	const [naranja, setNaranja] = useState([
-		{
-			name: 'abbey',
-		},
-		{
-			name: 'chapel',
-		},
-		{
-			name: 'cloister',
-		},
-		{
-			name: 'temple',
-		},
-	])
-	const [rojo, setRojo] = useState([
-		{
-			name: 'farm',
-		},
-		{
-			name: 'granary',
-		},
-		{
-			name: 'greenhouse',
-		},
-		{
-			name: 'orchard',
-		},
-	])
-	const [verde, setVerde] = useState([
-		{
-			name: 'almshouse',
-		},
-		{
-			name: 'feast hall',
-		},
-		{
-			name: 'inn',
-		},
-		{
-			name: 'tavern',
-		},
-	])
-	const [gris, setGris] = useState([
-		{
-			name: 'fountain',
-		},
-		{
-			name: 'millstone',
-		},
-		{
-			name: 'shed',
-		},
-		{
-			name: 'well',
-		},
-	])
-	const [amarillo, setAmarillo] = useState([
-		{
-			name: 'bakery',
-		},
-		{
-			name: 'market',
-		},
-		{
-			name: 'tailor',
-		},
-		{
-			name: 'theater',
-		},
-	])
-	const [azul, setAzul] = useState([
-		{
-			name: 'bank',
-		},
-		{
-			name: 'factory',
-		},
-		{
-			name: 'trading post',
-		},
-		{
-			name: 'warehouse',
-		},
-	])
+import Tablero from '../../Components/Board';
 
-	const [rosa, setRosa] = useState([
-		{
-			name: 'architect´s guild',
-		},
-		{
-			name: 'archive of the second age',
-		},
-		{
-			name: 'barrett castle',
-		},
-		{
-			name: 'cathedral of caterina',
-		},
-		{
-			name: 'fort ironweed',
-		},
-		{
-			name: 'grove university',
-		},
-		{
-			name: 'mandras palace',
-		},
-		{
-			name: 'opaleye´s watch',
-		},
-		{
-			name: 'shirne of the elder tree',
-		},
-		{
-			name: 'silva forum',
-		},
-		{
-			name: 'the starloom',
-		},
-		{
-			name: 'statue of the bondmaker',
-		},
-	])
+const Board = props => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-	const barajeo_general = (array) => {
-		let resultado = array.sort(() => {
-			return Math.random() - 0.5
-		})
-		return resultado
-	}
-	const barajear = async () => {
-		setBaraja([...barajeo_general(baraja)])
-		setAzul([...barajeo_general(azul)])
-		setGris([...barajeo_general(gris)])
-		setNaranja([...barajeo_general(naranja)])
-		setRojo([...barajeo_general(rojo)])
-		setAmarillo([...barajeo_general(amarillo)])
-		setVerde([...barajeo_general(verde)])
-		setRosa([...barajeo_general(rosa)])
-		let mazoJugable = [
-			cottage[0],
-			rojo[0],
-			gris[0],
-			naranja[0],
-			verde[0],
-			amarillo[0],
-			azul[0],
-		]
-		setJugables([...mazoJugable])
-	}
+  const seleccionar_carta = (item, idx) => {
+    let body = {
+      name: item,
+      idx,
+    };
+    dispatch({ type: actions.seleccionarCarta, payload: body });
+  };
 
-	const seleccionar_monumento = (idx) => {
-		let array = edificios_jugables
-		array.push(rosa[idx])
-		setJugables([...array])
-	}
+  const seleccionar_monumento = item => {
+    dispatch({ type: actions.seleccionarMonumento, payload: item });
+  };
 
-	const jalar_carta = (index) => {
-		if (index > 2) {
-			console.log('no haga trampa loco')
-		} else {
-			let array = [...baraja]
-			let carta_escogida = array[index]
-			array.splice(index, 1, array[3])
-			array.splice(3, 1)
-			array.push(carta_escogida)
-			setBaraja([...array])
-		}
-	}
+  const colocar_carta = item => {
+    dispatch({ type: actions.colocarCarta, payload: item });
+  };
 
-	useEffect(() => {
-		barajear()
-	}, [])
+  useEffect(() => {
+    dispatch({ type: actions.barajear });
+  }, []);
 
-	return (
-		<div className='container'>
-			<div className='materialContainer'>
-				{baraja
-					.filter((card, idx) => idx < 3)
-					.map((item, idx) => {
-						return (
-							<MaterialCard
-								key={idx}
-								name={item}
-								idx={idx}
-								click={() => jalar_carta(idx)}
-							/>
-						)
-					})}
-			</div>
-			<div className='edificiosContainer'>
-				{edificios_jugables.map((item, idx) => {
-					return (
-						<MaterialCard
-							key={idx}
-							name={item.name}
-							idx={idx}
-							click={() => console.log('click')}
-						/>
-					)
-				})}
-			</div>
-			<button onClick={() => seleccionar_monumento(0)}>{rosa[0].name}</button>
-			<button onClick={() => seleccionar_monumento(1)}>{rosa[1].name}</button>
-		</div>
-	)
-}
+  return (
+    <div className='container'>
+      <div className='materialContainer'>
+        {state.baraja
+          .filter((card, idx) => idx < 3)
+          .map((item, idx) => {
+            return (
+              <MaterialCard
+                key={idx}
+                name={item}
+                idx={idx}
+                click={() => seleccionar_carta(item, idx)}
+              />
+            );
+          })}
+      </div>
+      <div className='edificiosContainer'>
+        {state.edificiosJugables.map((item, idx) => {
+          return (
+            <MaterialCard
+              key={idx}
+              name={item.name}
+              idx={idx}
+              click={() => console.log('click')}
+            />
+          );
+        })}
+      </div>
+      {!state.rosaSeleccionado && (
+        <div>
+          <button onClick={() => seleccionar_monumento(state.rosa[0])}>
+            {state.rosa[0].name}
+          </button>
+          <button onClick={() => seleccionar_monumento(state.rosa[1])}>
+            {state.rosa[1].name}
+          </button>
+        </div>
+      )}
+      <Tablero
+        colocar_carta={item => colocar_carta(item)}
+        tablero={state.tablero}
+      />
+    </div>
+  );
+};
 
 const MaterialCard = ({ name, idx, click }) => {
-	return (
-		<div onClick={() => click()} className='materialCard'>
-			{name}
-			{idx}
-		</div>
-	)
-}
+  return (
+    <div onClick={() => click()} className='materialCard'>
+      {name}
+      {idx}
+    </div>
+  );
+};
 
-export default Board
+export default Board;
