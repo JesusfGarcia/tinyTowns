@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.css';
+import './styles.scss';
 
 const Board = ({ tablero, colocar_carta }) => {
   return (
@@ -14,8 +14,8 @@ const Board = ({ tablero, colocar_carta }) => {
 
 const Square = ({ item, colocar_carta }) => {
   return (
-    <div onClick={() => colocar_carta(item)} className='squareContainer'>
-      <div className='square'>
+    <div onClick={() => colocar_carta(item)} className={'squareContainer'}>
+      <div className={item.construible ? 'squarePlus' : 'square'}>
         <p>{item.item}</p>
       </div>
     </div>

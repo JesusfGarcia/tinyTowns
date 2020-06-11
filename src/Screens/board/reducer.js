@@ -1,7 +1,7 @@
 import { actions } from './actions';
 
 export const reducer = (state, action) => {
-  const actualizar_relaciones = (tablero) => {
+  const actualizar_relaciones = tablero => {
     let newTablero = [...tablero];
     let carta0 = newTablero[0];
     let carta1 = newTablero[1];
@@ -210,6 +210,7 @@ export const reducer = (state, action) => {
     ];
     return newTablero;
   };
+
   switch (action.type) {
     case actions.barajear:
       const barajaMaterial = state.baraja.sort(() => {
@@ -284,8 +285,7 @@ export const reducer = (state, action) => {
         baraja.splice(state.posicionSeleccionada, 1, baraja[3]);
         baraja.splice(3, 1);
         baraja.push(state.materialSeleccionado);
-        const tableroUpdated = actualizar_relaciones(carta, tablero);
-        console.log(tableroUpdated);
+        const tableroUpdated = actualizar_relaciones(tablero);
         return {
           ...state,
           tablero: [...tableroUpdated],
@@ -296,6 +296,35 @@ export const reducer = (state, action) => {
       }
       return {
         ...state,
+      };
+    case actions.verificarConstrucciones:
+      return {
+        ...state,
+        estaConstruyendo: true,
+      };
+    case actions.pintarEspacios:
+      let newTablero = state.tablero;
+      action.payload.map(item => {
+        return newTablero.splice(item, 1, {
+          ...state.tablero[item],
+          construible: true,
+        });
+      });
+      return {
+        ...state,
+        tablero: newTablero,
+      };
+    case actions.cancelarConstruccion:
+      let tablero = state.tablero.map(item => {
+        return {
+          ...item,
+          construible: false,
+        };
+      });
+      return {
+        ...state,
+        estaConstruyendo: false,
+        tablero,
       };
     default:
       return state;

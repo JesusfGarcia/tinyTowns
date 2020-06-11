@@ -1,4 +1,5 @@
 export const initialState = {
+  estaConstruyendo: false,
   rosaSeleccionado: false,
   posicionSeleccionada: -1,
   baraja: [
@@ -20,127 +21,179 @@ export const initialState = {
   ],
   materialSeleccionado: '',
   edificiosJugables: [],
-  cottage: { name: 'cottage', description: '', image: '', icons: '' },
+  cottage: {
+    name: 'cottage',
+    description: '',
+    image: '',
+    icons: '',
+    color: 'neutro',
+    materiales: ['trigo', 'ladrillo', 'vidrio'],
+  },
   naranja: [
     {
       name: 'abbey',
+      color: 'naranja',
+      description: '',
     },
     {
       name: 'chapel',
+      color: 'naranja',
+      description: '',
     },
     {
       name: 'cloister',
+      color: 'naranja',
+      description: '',
     },
     {
       name: 'temple',
+      color: 'naranja',
+      description: '',
     },
   ],
   rojo: [
     {
       name: 'farm',
+      color: 'rojo',
+      description: '',
     },
     {
       name: 'granary',
+      color: 'rojo',
+      description: '',
     },
     {
       name: 'greenhouse',
+      color: 'rojo',
+      description: '',
     },
     {
       name: 'orchard',
+      color: 'rojo',
+      description: '',
     },
   ],
   verde: [
     {
       name: 'almshouse',
+      color: 'verde',
     },
     {
       name: 'feast hall',
+      color: 'verde',
     },
     {
       name: 'inn',
+      color: 'verde',
     },
     {
       name: 'tavern',
+      color: 'verde',
     },
   ],
   gris: [
     {
       name: 'fountain',
+      color: 'gris',
     },
     {
       name: 'millstone',
+      color: 'gris',
     },
     {
       name: 'shed',
+      color: 'gris',
     },
     {
       name: 'well',
+      color: 'gris',
     },
   ],
   amarillo: [
     {
       name: 'bakery',
+      color: 'amarillo',
     },
     {
       name: 'market',
+      color: 'amarillo',
     },
     {
+      color: 'amarillo',
       name: 'tailor',
     },
     {
       name: 'theater',
+      color: 'amarillo',
     },
   ],
   azul: [
     {
       name: 'bank',
+      color: 'azul',
     },
     {
       name: 'factory',
+      color: 'azul',
     },
     {
       name: 'trading post',
+      color: 'azul',
     },
+
     {
       name: 'warehouse',
+      color: 'azul',
     },
   ],
   rosa: [
     {
       name: 'architect´s guild',
+      color: 'rosa',
     },
     {
       name: 'archive of the second age',
+      color: 'rosa',
     },
     {
       name: 'barrett castle',
+      color: 'rosa',
     },
     {
       name: 'cathedral of caterina',
+      color: 'rosa',
     },
     {
       name: 'fort ironweed',
+      color: 'rosa',
     },
     {
       name: 'grove university',
+      color: 'rosa',
     },
     {
       name: 'mandras palace',
+      color: 'rosa',
     },
     {
       name: 'opaleye´s watch',
+      color: 'rosa',
     },
     {
       name: 'shirne of the elder tree',
+      color: 'rosa',
     },
     {
       name: 'silva forum',
+      color: 'rosa',
     },
     {
       name: 'the starloom',
+      color: 'rosa',
     },
     {
       name: 'statue of the bondmaker',
+      color: 'rosa',
     },
   ],
   tablero: [

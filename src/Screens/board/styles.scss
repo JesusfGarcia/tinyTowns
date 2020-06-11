@@ -1,34 +1,102 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
 }
 
 .materialContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
 }
 .edificiosContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
 }
 
 .materialCard {
-    width: 100px;
-    height: 150px;
+  width: 100px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.grid-container {
+  background-image: url('../../images/madera.jpg');
+  background-size: cover;
+  display: grid;
+  width: 100vw;
+  font-size: 1rem;
+  height: 100vh;
+  grid-template-rows: 3.5em 1fr 2fr;
+  grid-template-areas:
+    'top top top top top'
+    'materiales cartas cartas cartas mazo'
+    'materiales tablero tablero tablero botones';
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-area: top;
+    background-color: #804000;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .tablero {
+    grid-area: tablero;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cartas {
+    grid-area: cartas;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .materiales {
+    grid-area: materiales;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .botones {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
-    cursor: pointer;
-}
+    grid-area: botones;
 
+    .boton-style {
+      background-color: #fff;
+      padding: 5px 10px;
+      color: #000;
+      font-weight: bold;
+      font-size: 15px;
+      border-radius: 10%;
+    }
+  }
+}

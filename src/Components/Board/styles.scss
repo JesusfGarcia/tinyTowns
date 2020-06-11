@@ -1,5 +1,6 @@
 .containerTab {
-  background-color: #d9ddd3;
+  background-image: url('../../images/pasto.jpg');
+  background-size: contain;
   width: 37.5em;
   height: 37.5em;
   display: flex;
@@ -7,6 +8,7 @@
   align-items: flex-start;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  border-radius: 10px;
 }
 
 .squareContainer {
@@ -37,9 +39,31 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  &:hover {
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.square:hover {
-  width: 100%;
-  height: 100%;
+.squarePlus {
+  background: rgb(246, 237, 4);
+  background: linear-gradient(
+    5deg,
+    rgba(246, 237, 4, 0.8533614129245448) 0%,
+    rgba(240, 241, 225, 1) 49%,
+    rgba(246, 237, 4, 0.8477591720281863) 100%
+  );
+  width: 95%;
+  height: 95%;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 1px solid #f3f70a;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  &:hover {
+    width: 100%;
+    height: 100%;
+  }
 }
