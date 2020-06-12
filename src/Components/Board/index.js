@@ -16,7 +16,7 @@ const Square = ({ item, colocar_carta }) => {
   return (
     <div onClick={() => colocar_carta(item)} className={'squareContainer'}>
       <div className={item.construible ? 'squarePlus' : 'square'}>
-        <p>{item.item}</p>
+        <img src={item.item.src} alt='' className='imageItem' />
       </div>
     </div>
   );

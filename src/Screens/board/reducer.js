@@ -269,7 +269,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         posicionSeleccionada: action.payload.idx,
-        materialSeleccionado: action.payload.name,
+        materialSeleccionado: action.payload.item,
       };
     case actions.colocarCarta:
       if (state.materialSeleccionado && action.payload.item === '') {

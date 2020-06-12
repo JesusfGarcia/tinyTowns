@@ -8,6 +8,17 @@ import { reducer } from './reducer';
 
 import Tablero from '../../Components/Board';
 
+import maderaPhoto from '../../images/tronco.png';
+import vidrioPhoto from '../../images/vidrio.png';
+import piedraPhoto from '../../images/piedra.png';
+import trigoPhoto from '../../images/trigo.png';
+import ladrilloPhoto from '../../images/ladrillo.png';
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
+
 const Board = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -16,9 +27,9 @@ const Board = props => {
     state.tablero.map(item => {
       try {
         if (
-          item.item === 'vidrio' &&
-          item.right.item === 'trigo' &&
-          item.bot.item === 'ladrillo'
+          item.item.name === 'vidrio' &&
+          item.right.item.name === 'trigo' &&
+          item.bot.item.name === 'ladrillo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -26,9 +37,9 @@ const Board = props => {
           });
         }
         if (
-          item.right.item === edificio.materiales[0] &&
-          item.bot.item === edificio.materiales[1] &&
-          item.botRight.item === edificio.materiales[2]
+          item.right.item.name === edificio.materiales[0] &&
+          item.bot.item.name === edificio.materiales[1] &&
+          item.botRight.item.name === edificio.materiales[2]
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -36,9 +47,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'ladrillo' &&
-          item.bot.item === 'vidrio' &&
-          item.botRight.item === 'trigo'
+          item.item.name === 'ladrillo' &&
+          item.bot.item.name === 'vidrio' &&
+          item.botRight.item.name === 'trigo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -46,9 +57,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'vidrio' &&
-          item.right.item === 'ladrillo' &&
-          item.bot.item === 'trigo'
+          item.item.name === 'vidrio' &&
+          item.right.item.name === 'ladrillo' &&
+          item.bot.item.name === 'trigo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -56,9 +67,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'trigo' &&
-          item.right.item === 'vidrio' &&
-          item.botRight.item === 'ladrillo'
+          item.item.name === 'trigo' &&
+          item.right.item.name === 'vidrio' &&
+          item.botRight.item.name === 'ladrillo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -66,9 +77,9 @@ const Board = props => {
           });
         }
         if (
-          item.left.item === 'trigo' &&
-          item.top.item === 'ladrillo' &&
-          item.topLeft.item === 'vidrio'
+          item.left.item.name === 'trigo' &&
+          item.top.item.name === 'ladrillo' &&
+          item.topLeft.item.name === 'vidrio'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -76,9 +87,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'ladrillo' &&
-          item.top.item === 'vidrio' &&
-          item.topLeft.item === 'trigo'
+          item.item.name === 'ladrillo' &&
+          item.top.item.name === 'vidrio' &&
+          item.topLeft.item.name === 'trigo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -86,9 +97,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'vidrio' &&
-          item.left.item === 'ladrillo' &&
-          item.top.item === 'trigo'
+          item.item.name === 'vidrio' &&
+          item.left.item.name === 'ladrillo' &&
+          item.top.item.name === 'trigo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -96,9 +107,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'trigo' &&
-          item.left.item === 'vidrio' &&
-          item.topLeft.item
+          item.item.name === 'trigo' &&
+          item.left.item.name === 'vidrio' &&
+          item.topLeft.item.name
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -106,9 +117,9 @@ const Board = props => {
           });
         }
         if (
-          item.item === 'vidrio' &&
-          item.left.item === 'ladrillo' &&
-          item.bot.item === 'trigo'
+          item.item.name === 'vidrio' &&
+          item.left.item.name === 'ladrillo' &&
+          item.bot.item.name === 'trigo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -127,7 +138,7 @@ const Board = props => {
 
   const seleccionar_carta = (item, idx) => {
     let body = {
-      name: item,
+      item: item,
       idx,
     };
     dispatch({ type: actions.seleccionarCarta, payload: body });
@@ -135,6 +146,7 @@ const Board = props => {
 
   const seleccionar_monumento = item => {
     dispatch({ type: actions.seleccionarMonumento, payload: item });
+    cerrarModal();
   };
 
   const colocar_carta = item => {
@@ -145,13 +157,37 @@ const Board = props => {
     dispatch({ type: actions.cancelarConstruccion });
   };
 
+  const cerrarModal = () => {
+    MySwal.fire({
+      title: 'Monumento Seleccionado!',
+    });
+  };
+
   useEffect(() => {
     dispatch({ type: actions.barajear });
+    MySwal.fire({
+      title: <p>Bienvenido a Tiny Towns</p>,
+      backdrop: `
+      rgba(0,0,123,0.4)
+    `,
+      showConfirmButton: false,
+      html: (
+        <div>
+          <button onClick={() => seleccionar_monumento(state.rosa[0])}>
+            {state.rosa[0].name}
+          </button>
+          <button onClick={() => seleccionar_monumento(state.rosa[1])}>
+            {state.rosa[1].name}
+          </button>
+        </div>
+      ),
+    });
   }, []);
 
   return (
     <div className='grid-container'>
       <div className='top'>Tiny Towns</div>
+      <div className='relleno'>Materiales</div>
       <div className='tablero'>
         <Tablero
           colocar_carta={item => colocar_carta(item)}
@@ -161,7 +197,7 @@ const Board = props => {
       <div className='cartas'>
         {state.edificiosJugables.map((item, idx) => {
           return (
-            <MaterialCard
+            <BuildCard
               key={idx}
               name={item.name}
               idx={idx}
@@ -169,16 +205,6 @@ const Board = props => {
             />
           );
         })}
-        {!state.rosaSeleccionado && (
-          <div>
-            <button onClick={() => seleccionar_monumento(state.rosa[0])}>
-              {state.rosa[0].name}
-            </button>
-            <button onClick={() => seleccionar_monumento(state.rosa[1])}>
-              {state.rosa[1].name}
-            </button>
-          </div>
-        )}
       </div>
       <div className='materiales'>
         {state.baraja
@@ -186,8 +212,9 @@ const Board = props => {
           .map((item, idx) => {
             return (
               <MaterialCard
+                cartaSelected={state.posicionSeleccionada}
                 key={idx}
-                name={item}
+                item={item}
                 idx={idx}
                 click={() => seleccionar_carta(item, idx)}
               />
@@ -212,17 +239,30 @@ const Board = props => {
         )}
 
         <button className='boton-style' onClick={() => alert('hola')}>
-          Abandonar{' '}
+          Abandonar
         </button>
       </div>
     </div>
   );
 };
 
-const MaterialCard = ({ name, idx, click }) => {
+const BuildCard = ({ name, idx, click, cartaSelected }) => {
   return (
-    <div onClick={() => click()} className='materialCard'>
+    <div className={idx === cartaSelected ? 'buildCardSelected' : 'buildCard'}>
       {name}
+    </div>
+  );
+};
+
+const MaterialCard = ({ item, idx, click, cartaSelected }) => {
+  return (
+    <div
+      onClick={() => click()}
+      className={
+        idx === cartaSelected ? 'materialCardSelected' : 'materialCard'
+      }
+    >
+      <img className='imageStyle' src={item.src} alt='item' />
     </div>
   );
 };

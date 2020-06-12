@@ -21,18 +21,6 @@
   width: 1000px;
 }
 
-.materialCard {
-  width: 100px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #000;
-  background-color: #fff;
-  cursor: pointer;
-}
-
 .grid-container {
   background-image: url('../../images/madera.jpg');
   background-size: cover;
@@ -43,8 +31,20 @@
   grid-template-rows: 3.5em 1fr 2fr;
   grid-template-areas:
     'top top top top top'
-    'materiales cartas cartas cartas mazo'
+    'relleno cartas cartas cartas mazo'
     'materiales tablero tablero tablero botones';
+
+  .relleno {
+    grid-area: relleno;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
+  }
 
   .top {
     display: flex;
@@ -52,10 +52,20 @@
     align-items: center;
     justify-content: center;
     grid-area: top;
-    background-color: #804000;
+    background: rgb(111, 69, 2);
+    background: linear-gradient(
+      0deg,
+      rgba(111, 69, 2, 1) 0%,
+      rgba(228, 170, 79, 1) 49%,
+      rgba(111, 69, 2, 1) 100%
+    );
     color: #fff;
     font-size: 25px;
     font-weight: bold;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-text-stroke: 1px black;
   }
 
   .tablero {
@@ -73,6 +83,43 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+
+    .buildCard {
+      width: 6.25em;
+      height: 9.385em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px 5px 5px 5px;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border: 0px solid #000000;
+      background-color: #fff;
+      cursor: pointer;
+      -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      text-align: center;
+    }
+    .materialCardSelected {
+      width: 6.25em;
+      height: 9.385em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px 5px 5px 5px;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border: 0px solid #000000;
+      background-color: rgb(235, 201, 12);
+      cursor: pointer;
+      -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      text-align: center;
+    }
   }
 
   .materiales {
@@ -81,6 +128,50 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+
+    .materialCard {
+      width: 6.25em;
+      height: 9.385em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px 5px 5px 5px;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border: 0px solid #000000;
+      background-color: #fff;
+      cursor: pointer;
+      -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      .imageStyle {
+        width: 6.25em;
+        height: 6.25em;
+      }
+    }
+
+    .materialCardSelected {
+      width: 6.25em;
+      height: 9.385em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px 5px 5px 5px;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border: 0px solid #000000;
+      background-color: rgb(235, 201, 12);
+      cursor: pointer;
+      -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+      .imageStyle {
+        width: 6.25em;
+        height: 6.25em;
+      }
+    }
   }
 
   .botones {
@@ -91,12 +182,22 @@
     grid-area: botones;
 
     .boton-style {
-      background-color: #fff;
+      background: rgb(111, 69, 2);
+      background: linear-gradient(
+        0deg,
+        rgba(111, 69, 2, 1) 0%,
+        rgba(228, 170, 79, 1) 49%,
+        rgba(111, 69, 2, 1) 100%
+      );
+      -webkit-text-stroke: 1px black;
       padding: 5px 10px;
-      color: #000;
+      color: #fff;
       font-weight: bold;
-      font-size: 15px;
+      font-size: 20px;
       border-radius: 10%;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      width: 90%;
     }
   }
 }

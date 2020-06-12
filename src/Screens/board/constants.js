@@ -1,23 +1,28 @@
+import ladrilloPng from '../../images/ladrillo.png';
+import piedraPng from '../../images/piedra.png';
+import trigoPng from '../../images/trigo.png';
+import troncoPng from '../../images/tronco.png';
+import vidrioPng from '../../images/vidrio.png';
 export const initialState = {
   estaConstruyendo: false,
   rosaSeleccionado: false,
   posicionSeleccionada: -1,
   baraja: [
-    'madera',
-    'ladrillo',
-    'trigo',
-    'piedra',
-    'vidrio',
-    'madera',
-    'ladrillo',
-    'trigo',
-    'piedra',
-    'vidrio',
-    'madera',
-    'ladrillo',
-    'trigo',
-    'piedra',
-    'vidrio',
+    { name: 'madera', src: troncoPng },
+    { name: 'ladrillo', src: ladrilloPng },
+    { name: 'trigo', src: trigoPng },
+    { name: 'piedra', src: piedraPng },
+    { name: 'vidrio', src: vidrioPng },
+    { name: 'madera', src: troncoPng },
+    { name: 'ladrillo', src: ladrilloPng },
+    { name: 'trigo', src: trigoPng },
+    { name: 'piedra', src: piedraPng },
+    { name: 'vidrio', src: vidrioPng },
+    { name: 'madera', src: troncoPng },
+    { name: 'ladrillo', src: ladrilloPng },
+    { name: 'trigo', src: trigoPng },
+    { name: 'piedra', src: piedraPng },
+    { name: 'vidrio', src: vidrioPng },
   ],
   materialSeleccionado: '',
   edificiosJugables: [],
