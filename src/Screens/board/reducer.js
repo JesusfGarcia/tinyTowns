@@ -304,11 +304,44 @@ export const reducer = (state, action) => {
       };
     case actions.pintarEspacios:
       let newTablero = state.tablero;
+      let pushear = true;
+
       action.payload.map(item => {
-        return newTablero.splice(item, 1, {
-          ...state.tablero[item],
-          construible: true,
-        });
+        //comprobar si ya existe la configuración
+        if (state.tablero[item].construibleCon.length <= 1) {
+          if (
+            state.tablero[item].construibleCon.sort().join(',') ===
+            action.payload.sort().join(',')
+          ) {
+            console.log('hay una configuración igual');
+          } else {
+            return newTablero.splice(item, 1, {
+              ...state.tablero[item],
+              construible: true,
+              construibleCon: [
+                ...state.tablero[item].construibleCon,
+                action.payload,
+              ],
+            });
+          }
+        } else {
+          state.tablero[item].construibleCon.map(array => {
+            if (array.sort().join(',') === action.payload.sort().join(',')) {
+              return (pushear = false);
+            }
+          });
+          if (pushear) {
+            return newTablero.splice(item, 1, {
+              ...state.tablero[item],
+              construible: true,
+              construibleCon: [
+                ...state.tablero[item].construibleCon,
+                action.payload,
+              ],
+            });
+          }
+        }
+        //////////////////////////////////////////////////////
       });
       return {
         ...state,
@@ -319,12 +352,57 @@ export const reducer = (state, action) => {
         return {
           ...item,
           construible: false,
+          construibleCon: [],
         };
       });
       return {
         ...state,
         estaConstruyendo: false,
         tablero,
+        color_a_verificar: '',
+      };
+    case actions.color_a_verificar:
+      let new_tablero = state.tablero.map(item => {
+        return {
+          ...item,
+          construible: false,
+          construibleCon: [],
+        };
+      });
+      return {
+        ...state,
+        tablero: new_tablero,
+        color_a_verificar: action.payload,
+      };
+    case actions.construir:
+      let dummy = [...state.tablero];
+      action.payload.construibleCon[0].map(id => {
+        if (id === action.payload.id) {
+          let carta = {
+            ...action.payload,
+            material: false,
+            build: true,
+            item: state.edificiosJugables[0],
+            construibleCon: [],
+            construible: false,
+          };
+          dummy.splice(id, 1, carta);
+        } else {
+          let carta = {
+            ...dummy[id],
+            material: false,
+            build: false,
+            item: '',
+            construibleCon: [],
+            construible: false,
+          };
+          dummy.splice(id, 1, carta);
+        }
+      });
+      const tableroUpdated = actualizar_relaciones(dummy);
+      return {
+        ...state,
+        tablero: tableroUpdated,
       };
     default:
       return state;

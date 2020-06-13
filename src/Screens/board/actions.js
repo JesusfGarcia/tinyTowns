@@ -6,4 +6,6 @@ export const actions = {
   verificarConstrucciones: 'VERIFICAR_CONSTRUCCIONES',
   pintarEspacios: 'PINTAR_ESPACIOS',
   cancelarConstruccion: 'CANCELARCONSTRUCCION',
+  color_a_verificar: 'COLOR_A_VERIFICAR',
+  construir: 'CONSTRUIR',
 };

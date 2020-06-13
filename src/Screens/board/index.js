@@ -8,12 +8,6 @@ import { reducer } from './reducer';
 
 import Tablero from '../../Components/Board';
 
-import maderaPhoto from '../../images/tronco.png';
-import vidrioPhoto from '../../images/vidrio.png';
-import piedraPhoto from '../../images/piedra.png';
-import trigoPhoto from '../../images/trigo.png';
-import ladrilloPhoto from '../../images/ladrillo.png';
-
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -109,7 +103,7 @@ const Board = props => {
         if (
           item.item.name === 'trigo' &&
           item.left.item.name === 'vidrio' &&
-          item.topLeft.item.name
+          item.topLeft.item.name === 'ladrillo'
         ) {
           dispatch({
             type: actions.pintarEspacios,
@@ -132,8 +126,58 @@ const Board = props => {
 
   const verificar_construcciones = () => {
     dispatch({ type: actions.verificarConstrucciones });
+  };
 
-    checarNeutro();
+  const tratar_construir = item => {
+    if (item.construibleCon.length === 1) {
+      dispatch({ type: actions.construir, payload: item });
+    }
+  };
+
+  const tareaxD = () => {
+    let array = [1, 2, 3, 4, 5, 6];
+    array.map(item => {
+      return console.log('map', item);
+    });
+    for (let i = 0; i < array.length; i++) {
+      console.log('for', array[i]);
+    }
+
+    array.forEach(element => {
+      console.log('forEach', element);
+    });
+  };
+
+  const seleccionar_tipo_construccion = item => {
+    dispatch({ type: actions.color_a_verificar, payload: item.color });
+    switch (item.color) {
+      case 'neutro':
+        checarNeutro();
+        break;
+      case 'naranja':
+        alert('checar naranja');
+        break;
+      case 'rojo':
+        alert('checar rojo');
+        break;
+      case 'verde':
+        alert('checar verde');
+        break;
+      case 'gris':
+        alert('checar gris');
+        break;
+      case 'amarillo':
+        alert('checar amarillo');
+        break;
+      case 'azul':
+        alert('checar azul');
+        break;
+      case 'rosa':
+        alert('checar rosa');
+        break;
+      default:
+        break;
+    }
   };
 
   const seleccionar_carta = (item, idx) => {
@@ -173,6 +217,7 @@ const Board = props => {
       showConfirmButton: false,
       html: (
         <div>
+          <p>Seleccione el monumento con el que quiera jugar</p>
           <button onClick={() => seleccionar_monumento(state.rosa[0])}>
             {state.rosa[0].name}
           </button>
@@ -191,6 +236,7 @@ const Board = props => {
       <div className='tablero'>
         <Tablero
           colocar_carta={item => colocar_carta(item)}
+          tratar_construir={item => tratar_construir(item)}
           tablero={state.tablero}
         />
       </div>
@@ -199,9 +245,10 @@ const Board = props => {
           return (
             <BuildCard
               key={idx}
-              name={item.name}
-              idx={idx}
-              click={() => console.log('click')}
+              item={item}
+              click={() => seleccionar_tipo_construccion(item)}
+              cartaSelected={state.color_a_verificar === item.color}
+              enabled={state.estaConstruyendo}
             />
           );
         })}
@@ -217,6 +264,7 @@ const Board = props => {
                 item={item}
                 idx={idx}
                 click={() => seleccionar_carta(item, idx)}
+                enabled={!state.estaConstruyendo}
               />
             );
           })}
@@ -238,7 +286,7 @@ const Board = props => {
           </button>
         )}
 
-        <button className='boton-style' onClick={() => alert('hola')}>
+        <button className='boton-style' onClick={tareaxD}>
           Abandonar
         </button>
       </div>
@@ -246,18 +294,21 @@ const Board = props => {
   );
 };
 
-const BuildCard = ({ name, idx, click, cartaSelected }) => {
+const BuildCard = ({ item, click, cartaSelected, enabled }) => {
   return (
-    <div className={idx === cartaSelected ? 'buildCardSelected' : 'buildCard'}>
-      {name}
+    <div
+      onClick={enabled && click}
+      className={cartaSelected ? 'buildCardSelected' : 'buildCard'}
+    >
+      {item.name}
     </div>
   );
 };
 
-const MaterialCard = ({ item, idx, click, cartaSelected }) => {
+const MaterialCard = ({ item, idx, click, cartaSelected, enabled }) => {
   return (
     <div
-      onClick={() => click()}
+      onClick={enabled && click}
       className={
         idx === cartaSelected ? 'materialCardSelected' : 'materialCard'
       }
