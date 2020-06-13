@@ -124,13 +124,66 @@ const Board = props => {
     });
   };
 
+  const checarNaranja = () => {
+    //edificio = 6
+  };
+
+  const checarRojo = () => {
+    //edificio = 5
+  };
+  const checarVerde = () => {
+    //edificio = 4
+  };
+
+  const checarGris = () => {
+    //edificio = 3
+  };
+
+  const checarAmarillo = () => {
+    //edificio = 2
+  };
+
+  const checarAzul = () => {
+    //edificio = 1
+  };
+
+  const checarRosa = () => {
+    //edificio = 7
+  };
   const verificar_construcciones = () => {
     dispatch({ type: actions.verificarConstrucciones });
   };
 
   const tratar_construir = item => {
     if (item.construibleCon.length === 1) {
-      dispatch({ type: actions.construir, payload: item });
+      switch (state.color_a_verificar) {
+        case 'neutro':
+          dispatch({ type: actions.construir, payload: item, edificio: 0 });
+          break;
+        case 'naranja':
+          dispatch({ type: actions.construir, payload: item, edificio: 6 });
+          break;
+        case 'rojo':
+          dispatch({ type: actions.construir, payload: item, edificio: 5 });
+          break;
+        case 'verde':
+          dispatch({ type: actions.construir, payload: item, edificio: 4 });
+          break;
+        case 'gris':
+          dispatch({ type: actions.construir, payload: item, edificio: 3 });
+          break;
+        case 'amarillo':
+          dispatch({ type: actions.construir, payload: item, edificio: 2 });
+          break;
+        case 'azul':
+          dispatch({ type: actions.construir, payload: item, edificio: 1 });
+          break;
+        case 'rosa':
+          dispatch({ type: actions.construir, payload: item, edificio: 7 });
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -155,25 +208,25 @@ const Board = props => {
         checarNeutro();
         break;
       case 'naranja':
-        alert('checar naranja');
+        checarNaranja();
         break;
       case 'rojo':
-        alert('checar rojo');
+        checarRojo();
         break;
       case 'verde':
-        alert('checar verde');
+        checarVerde();
         break;
       case 'gris':
-        alert('checar gris');
+        checarGris();
         break;
       case 'amarillo':
-        alert('checar amarillo');
+        checarAmarillo();
         break;
       case 'azul':
-        alert('checar azul');
+        checarAzul();
         break;
       case 'rosa':
-        alert('checar rosa');
+        checarRosa();
         break;
       default:
         break;

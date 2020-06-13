@@ -382,7 +382,7 @@ export const reducer = (state, action) => {
             ...action.payload,
             material: false,
             build: true,
-            item: state.edificiosJugables[0],
+            item: state.edificiosJugables[action.edificio],
             construibleCon: [],
             construible: false,
           };
