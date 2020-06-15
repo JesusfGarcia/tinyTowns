@@ -404,6 +404,25 @@ export const reducer = (state, action) => {
         ...state,
         tablero: tableroUpdated,
       };
+    case actions.setPuntuacion:
+      return {
+        ...state,
+        puntuacion: state.puntuacion + action.payload,
+      };
+    case actions.alimentarCasa:
+      let tablero_alimentado = [...state.tablero];
+      let carta = {
+        ...tablero_alimentado[action.id],
+        item: {
+          ...tablero_alimentado[action.id].item,
+          feed: true,
+        },
+      };
+      tablero_alimentado.splice(action.id, 1, carta);
+      return {
+        ...state,
+        tablero: tablero_alimentado,
+      };
     default:
       return state;
   }

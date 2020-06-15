@@ -8,4 +8,6 @@ export const actions = {
   cancelarConstruccion: 'CANCELARCONSTRUCCION',
   color_a_verificar: 'COLOR_A_VERIFICAR',
   construir: 'CONSTRUIR',
+  setPuntuacion: 'SET_PUNTUACION',
+  alimentarCasa: 'ALIMENTAR_CASA',
 };

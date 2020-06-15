@@ -11,11 +11,33 @@ import negraPng from '../../images/negra.png';
 import rojaPng from '../../images/roja.png';
 import verdePng from '../../images/verde.png';
 
+import abbey from '../../images/abbey.jpg';
+import almhouse from '../../images/almhouse.jpg';
+import catedral from '../../images/catedral.jpg';
+import chapel from '../../images/chapel.jpg';
+import cloister from '../../images/cloister.jpg';
+import factory from '../../images/factory.JPEG';
+import feastHall from '../../images/feasthall.jpg';
+import fountain from '../../images/fountain.jpg';
+import mandras from '../../images/mandras.jpg';
+import millstone from '../../images/millstone.jpg';
+import silva_forum from '../../images/silvaforum.jpg';
+import tavern from '../../images/tavern.jpg';
+import temple from '../../images/temple.jpg';
+import tradingPost from '../../images/tradingpost.jpg';
+import warehouse from '../../images/warehouse.jpg';
+import well from '../../images/well.jpg';
+import cottage from '../../images/cottage.jpeg';
+import tailor from '../../images/tailor.jpeg';
+import bakery from '../../images/bakery.jpeg';
+import granary from '../../images/granary.jpeg';
+
 export const initialState = {
   color_a_verificar: '',
   estaConstruyendo: false,
   rosaSeleccionado: false,
   posicionSeleccionada: -1,
+  puntuacion: 0,
   baraja: [
     { name: 'madera', src: troncoPng },
     { name: 'ladrillo', src: ladrilloPng },
@@ -38,238 +60,153 @@ export const initialState = {
   cottage: {
     name: 'cottage',
     description: '',
-    image: '',
-    icons: '',
+    image: cottage,
     color: 'neutro',
     materiales: ['trigo', 'ladrillo', 'vidrio'],
-    src: azulPng
+    src: azulPng,
+    feed: false,
   },
   naranja: [
     {
       name: 'abbey',
       color: 'naranja',
+      image: abbey,
       description: '',
       src: naranjaPng,
-      materiales: ['vidrio','ladrillo','piedra','piedra']
+      materiales: ['vidrio', 'ladrillo', 'piedra', 'piedra'],
     },
-    {
-      name: 'chapel',
-      color: 'naranja',
-      description: '',
-      src: naranjaPng,
-      materiales: ['vidrio','piedra','vidrio','piedra']
-      
-    },
+
     {
       name: 'cloister',
       color: 'naranja',
+      image: cloister,
       description: '',
       src: naranjaPng,
-      materiales: ['vidrio','madera','ladrillo','piedra']
+      materiales: ['vidrio', 'madera', 'ladrillo', 'piedra'],
     },
     {
       name: 'temple',
       color: 'naranja',
+      image: temple,
       description: '',
       src: naranjaPng,
-      materiales: ['vidrio','ladrillo','ladrillo','piedra']
+      materiales: ['vidrio', 'ladrillo', 'ladrillo', 'piedra'],
     },
   ],
   rojo: [
     {
-      name: 'farm',
-      color: 'rojo',
-      description: '',
-      src: rojaPng,
-      materiales: ['trigo','trigo','madera','madera']
-    },
-    {
       name: 'granary',
       color: 'rojo',
+      image: granary,
       description: '',
       src: rojaPng,
-      materiales: ['trigo','trigo','madera','ladrillo']
-    },
-    {
-      name: 'greenhouse',
-      color: 'rojo',
-      description: '',
-      src: rojaPng,
-      materiales: ['trigo','vidrio','madera','madera']
-    },
-    {
-      name: 'orchard',
-      color: 'rojo',
-      description: '',
-      src: rojaPng,
-      materiales: ['piedra','trigo','trigo','madera']
+      materiales: ['trigo', 'trigo', 'madera', 'ladrillo'],
     },
   ],
   verde: [
     {
       name: 'almshouse',
       color: 'verde',
+      image: almhouse,
       src: verdePng,
-      materiales: ['piedra','piedra','vidrio']
+      materiales: ['piedra', 'piedra', 'vidrio'],
     },
     {
       name: 'feast hall',
       color: 'verde',
+      image: feastHall,
       src: verdePng,
-      materiales: ['madera','madera','vidrio']
-    },
-    {
-      name: 'inn',
-      color: 'verde',
-      src: verdePng,
-      materiales: ['trigo','piedra','vidrio']
+      materiales: ['madera', 'madera', 'vidrio'],
     },
     {
       name: 'tavern',
+      image: tavern,
       color: 'verde',
       src: verdePng,
-      materiales: ['ladrillo','ladrillo','vidrio']
+      materiales: ['ladrillo', 'ladrillo', 'vidrio'],
     },
   ],
   gris: [
     {
+      name: 'well',
+      color: 'gris',
+      image: well,
+      src: grisPng,
+      materiales: ['madera', 'piedra'],
+    },
+    {
       name: 'fountain',
       color: 'gris',
+      image: fountain,
       src: grisPng,
-      materiales: ['madera','piedra']
+      materiales: ['madera', 'piedra'],
     },
     {
       name: 'millstone',
       color: 'gris',
+      image: millstone,
       src: grisPng,
-      materiales: ['madera','piedra']
-    },
-    {
-      name: 'shed',
-      color: 'gris',
-      src: grisPng,
-      materiales: ['madera','piedra']
-    },
-    {
-      name: 'well',
-      color: 'gris',
-      src: grisPng,
-      materiales: ['madera','piedra']
+      materiales: ['madera', 'piedra'],
     },
   ],
   amarillo: [
     {
       name: 'bakery',
       color: 'amarillo',
+      image: bakery,
       src: amarilloPng,
-      materiales: ['trigo','ladrillo','vidrio','ladrillo']
-    },
-    {
-      name: 'market',
-      color: 'amarillo',
-      src: amarilloPng,
-      materiales: ['madera','piedra','vidrio','piedra']
+      materiales: ['trigo', 'ladrillo', 'vidrio', 'ladrillo'],
     },
     {
       color: 'amarillo',
       name: 'tailor',
+      image: tailor,
       src: amarilloPng,
-      materiales: ['trigo','piedra','vidrio','piedra']
-    },
-    {
-      name: 'theater',
-      color: 'amarillo',
-      src: amarilloPng,
-      materiales: ['piedra','madera','vidrio','madera']
+      materiales: ['trigo', 'piedra', 'vidrio', 'piedra'],
     },
   ],
   azul: [
     {
-      name: 'bank',
-      color: 'azul',
-      src: negraPng,
-      materiales: ['trigo','trigo','madera','vidrio','ladrillo']
-    },
-    {
       name: 'factory',
       color: 'azul',
+      image: factory,
       src: negraPng,
-      materiales: ['madera','ladrillo','piedra','piedra','ladrillo']
+      materiales: ['madera', 'ladrillo', 'piedra', 'piedra', 'ladrillo'],
     },
     {
       name: 'trading post',
       color: 'azul',
+      image: tradingPost,
       src: negraPng,
-      materiales: ['piedra','madera','piedra','madera','ladrillo']
+      materiales: ['piedra', 'madera', 'piedra', 'madera', 'ladrillo'],
     },
 
     {
       name: 'warehouse',
       color: 'azul',
+      image: warehouse,
       src: negraPng,
-      materiales: ['trigo','madera','trigo','ladrillo','ladrillo']
+      materiales: ['trigo', 'madera', 'trigo', 'ladrillo', 'ladrillo'],
     },
   ],
   rosa: [
     {
-      name: 'architect´s guild',
-      color: 'rosa',
-      materiales: ['vidrio','trigo','piedra','madera','ladrillo']
-    },
-    {
-      name: 'archive of the second age',
-      color: 'rosa',
-      materiales: ['trigo','trigo','ladrillo','vidrio']
-    },
-    {
-      name: 'barrett castle',
-      color: 'rosa',
-      materiales: ['trigo','piedra','madera','vidrio','vidrio','ladrillo']
-    },
-    {
       name: 'cathedral of caterina',
+      image: catedral,
       color: 'rosa',
-      materiales: ['trigo','piedra','vidrio']
-    },
-    {
-      name: 'fort ironweed',
-      color: 'rosa',
-      materiales: ['trigo','ladrillo','piedra','madera','piedra']
-    },
-    {
-      name: 'grove university',
-      color: 'rosa',
-      materiales: ['ladrillo','piedra','vidrio','piedra']
+      materiales: ['trigo', 'piedra', 'vidrio'],
     },
     {
       name: 'mandras palace',
+      image: mandras,
       color: 'rosa',
-      materiales: ['trigo','vidrio','ladrillo','madera']
-    },
-    {
-      name: 'opaleye´s watch',
-      color: 'rosa',
-      materiales: ['madera','ladrillo','vidrio','trigo','trigo','piedra']
-    },
-    {
-      name: 'shrine of the elder tree',
-      color: 'rosa',
-      materiales: ['ladrillo','trigo','piedra','madera','vidrio','madera']
+      materiales: ['trigo', 'vidrio', 'ladrillo', 'madera'],
     },
     {
       name: 'silva forum',
+      image: silva_forum,
       color: 'rosa',
-      materiales: ['trigo','ladrillo','ladrillo','piedra','madera']
-    },
-    {
-      name: 'the starloom',
-      color: 'rosa',
-      materiales: ['vidrio','vidrio','madera','trigo']
-    },
-    {
-      name: 'statue of the bondmaker',
-      color: 'rosa',
-      materiales: ['madera','piedra','piedra','vidrio','trigo']
+      materiales: ['trigo', 'ladrillo', 'ladrillo', 'piedra', 'madera'],
     },
   ],
   tablero: [
@@ -531,3 +468,114 @@ export const initialState = {
     },
   ],
 };
+
+/*
+DLC
+  {
+      name: 'the starloom',
+      color: 'rosa',
+      materiales: ['vidrio', 'vidrio', 'madera', 'trigo'],
+    },
+    {
+      name: 'statue of the bondmaker',
+      color: 'rosa',
+      materiales: ['madera', 'piedra', 'piedra', 'vidrio', 'trigo'],
+    },
+        {
+      name: 'shrine of the elder tree',
+      color: 'rosa',
+      materiales: ['ladrillo', 'trigo', 'piedra', 'madera', 'vidrio', 'madera'],
+    },
+    {
+      name: 'fort ironweed',
+      color: 'rosa',
+      materiales: ['trigo', 'ladrillo', 'piedra', 'madera', 'piedra'],
+    },
+    {
+      name: 'grove university',
+      color: 'rosa',
+      materiales: ['ladrillo', 'piedra', 'vidrio', 'piedra'],
+    },
+        {
+      name: 'architect´s guild',
+      color: 'rosa',
+      materiales: ['vidrio', 'trigo', 'piedra', 'madera', 'ladrillo'],
+    },
+    {
+      name: 'archive of the second age',
+      color: 'rosa',
+      materiales: ['trigo', 'trigo', 'ladrillo', 'vidrio'],
+    },
+    {
+      name: 'barrett castle',
+      color: 'rosa',
+      materiales: ['trigo', 'piedra', 'madera', 'vidrio', 'vidrio', 'ladrillo'],
+    },
+*/
+
+/* 
+        {
+      name: 'shed',
+      color: 'gris',
+      image: shed,
+      src: grisPng,
+      materiales: ['madera', 'piedra'],
+    },*/
+
+/*
+    {
+      name: 'theater',
+      color: 'amarillo',
+      image: theater,
+      src: amarilloPng,
+      materiales: ['piedra', 'madera', 'vidrio', 'madera'],
+    },
+        {
+      name: 'market',
+      color: 'amarillo',
+      image: market,
+      src: amarilloPng,
+      materiales: ['madera', 'piedra', 'vidrio', 'piedra'],
+    },
+
+*/
+
+/* 
+    {
+      name: 'orchard',
+      color: 'rojo',
+      image: orchard,
+      description: '',
+      src: rojaPng,
+      materiales: ['piedra', 'trigo', 'trigo', 'madera'],
+    },
+
+        {
+      name: 'farm',
+      color: 'rojo',
+      image: farm,
+      description: '',
+      src: rojaPng,
+      materiales: ['trigo', 'trigo', 'madera', 'madera'],
+    },
+        {
+      name: 'greenhouse',
+      color: 'rojo',
+      image: greenhouse,
+      description: '',
+      src: rojaPng,
+      materiales: ['trigo', 'vidrio', 'madera', 'madera'],
+    },
+*/
+
+/*
+{
+      name: 'chapel',
+      color: 'naranja',
+      image: chapel,
+      description: '',
+      src: naranjaPng,
+      materiales: ['vidrio', 'piedra', 'vidrio', 'piedra'],
+    },
+
+*/

@@ -101,6 +101,10 @@
       -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
       box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
       text-align: center;
+      .image {
+        width: 100%;
+        height: 100%;
+      }
     }
     .buildCardSelected {
       width: 6.25em;
@@ -112,13 +116,16 @@
       border-radius: 5px 5px 5px 5px;
       -moz-border-radius: 5px 5px 5px 5px;
       -webkit-border-radius: 5px 5px 5px 5px;
-      border: 0px solid #000000;
-      background-color: rgb(235, 201, 12);
+      border: 2px solid rgb(235, 201, 12);
       cursor: pointer;
       -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
       box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
       text-align: center;
+      .image {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -199,6 +206,16 @@
       margin-bottom: 5px;
       width: 90%;
     }
+  }
+  .Resultado {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+  }
+  .varResu {
+    font-size: 20px;
+    color: yellow;
+    font-weight: bold;
   }
 }
 
